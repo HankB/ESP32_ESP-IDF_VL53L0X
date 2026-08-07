@@ -4,6 +4,7 @@
 #include "proj_wifi.h"
 #include "proj_sntp.h"
 #include "proj_mqtt.h"
+#include "proj_vl53l0x.h"
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -127,6 +128,7 @@ void app_main(void)
         }
     }
 
+    proj_init_vl53l0x();
     proj_ds18b20_init();
         
     // just loop and publish periodically
