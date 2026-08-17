@@ -15,11 +15,17 @@ Provide an ESP32 based solution to measuring the sump depth in my pasement.
 
 ## Status
 
+* 2026-08-16 OTA incorporated and built, not yet tested. (VL53L0 not connected and proj_init_vl53l0x() not called.)
 * 2026-08-06 WIP
 
 ## Plans
 
-* (As stated)
+* Add OTA support as was done with <https://github.com/HankB/ESP32_create-project_start>
+* Application logic.
+  * Sample with a short enough period to detect changes in the water level due to sump pump operation
+  * Report when level changes sufficiently or on a longer timed interval.
+* Review initialization choices
+* Store calibration in NVS
 
 ## Build
 
@@ -35,6 +41,25 @@ idf.py menuconfig
 cp components/proj_wifi/secrets.h.example components/proj_wifi/secrets.h # fill in creds
 idf.py build flash monitor # builds the project and flashes it. 
 ```
+
+## Wiring
+
+### ESP32 DevKit V1
+
+Colors are for the DuPont jumpers on the breadboard. The ESP32 in use is an "ESP32 DevKit V1" to the best of my knowledge. The VL53L0X has pin header soldered amd protruding from the bottom edge of the board.
+
+|ESP|color|VL53L0X|notes|
+|---|---|---|---|
+|3V3|orange|VIN||
+|GND|yellow|GND||
+|D22|green|SCL||
+|D21|blue|SDA||
+||purple|GPIO1|unused|
+||gray|XSHUT|unused|
+
+### D1 Mini ESP32 ESP-WROOM
+
+Alternate H/W preparing for "deployment." This prototyping board has two rows of pins on each side and all connections (DS18B20 and VL53L0X) can be accomplished with the 1-wire interface moved to GPIO-16.
 
 ## Sensor description
 

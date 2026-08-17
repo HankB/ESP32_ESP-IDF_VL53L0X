@@ -128,7 +128,7 @@ void app_main(void)
         }
     }
 
-    proj_init_vl53l0x();
+    //proj_init_vl53l0x();
     proj_ds18b20_init();
         
     // just loop and publish periodically
